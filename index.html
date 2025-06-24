@@ -20,17 +20,11 @@
             <div class="section-header">
                 <h2>Current Home Photos</h2>
                 <p>Here's what we're working with - the before photos of our new space!</p>
-                <button class="upload-btn" onclick="triggerFileUpload('current')">
-                    Add Photos
-                </button>
-                <input type="file" id="current-upload" multiple accept="image/*" style="display: none;">
             </div>
             <div class="gallery" id="current-gallery">
-                <!-- Your uploaded photos will appear here -->
+                <!-- Your photos will be added here in the JavaScript -->
             </div>
         </section>
-
-
     </main>
 
     <!-- Modal for viewing images and comments -->
@@ -42,14 +36,6 @@
                     <img id="modal-image" src="" alt="">
                 </div>
                 <div class="modal-info">
-                    <div class="image-controls">
-                        <button id="priority-toggle-btn" class="small-control-btn priority-btn" onclick="toggleCurrentImagePriority()" style="display: none;">
-                            Mark as High Priority
-                        </button>
-                        <button id="delete-image-btn" class="small-control-btn delete-btn" onclick="deleteCurrentImage()" style="display: none;">
-                            Delete
-                        </button>
-                    </div>
                     <div class="modal-header">
                         <h3 id="modal-title"></h3>
                     </div>
