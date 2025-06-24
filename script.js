@@ -2,10 +2,10 @@
 let currentImageId = null;
 let comments = JSON.parse(localStorage.getItem('renovationComments')) || {};
 let savedImages = JSON.parse(localStorage.getItem('renovationImages')) || {
-    'current-gallery': [],
-    'reference-gallery': []
+    'current-gallery': []
 };
 let draggedElement = null;
+let commentImagePreview = null;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComments();
     loadSavedImages();
     setupDragAndDrop();
+    setupCommentImageUpload();
 });
 
 // Initialize gallery functionality
@@ -34,21 +35,15 @@ function initializeGallery() {
 // Setup file upload functionality
 function setupFileUploads() {
     const currentUpload = document.getElementById('current-upload');
-    const referenceUpload = document.getElementById('reference-upload');
     
     currentUpload.addEventListener('change', function() {
         handleFileUpload(this.files, 'current-gallery');
-    });
-    
-    referenceUpload.addEventListener('change', function() {
-        handleFileUpload(this.files, 'reference-gallery');
     });
 }
 
 // Trigger file upload
 function triggerFileUpload(type) {
-    const uploadId = type === 'current' ? 'current-upload' : 'reference-upload';
-    document.getElementById(uploadId).click();
+    document.getElementById('current-upload').click();
 }
 
 // Handle file upload
@@ -206,7 +201,8 @@ function addComment() {
         id: Date.now(),
         author: name,
         text: text,
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleString(),
+        attachedImage: commentImagePreview || null
     };
     
     // Initialize comments array for this image if it doesn't exist
@@ -221,6 +217,7 @@ function addComment() {
     // Clear form
     nameInput.value = '';
     textInput.value = '';
+    clearCommentImagePreview();
     
     // Show success feedback
     showNotification('Comment added successfully!');
@@ -233,6 +230,15 @@ function displayComment(comment) {
     commentElement.className = 'comment fade-in';
     commentElement.setAttribute('data-comment-id', comment.id);
     
+    let attachedImageHtml = '';
+    if (comment.attachedImage) {
+        attachedImageHtml = `
+            <div class="comment-with-image">
+                <img src="${comment.attachedImage}" alt="Attached image" class="comment-attached-image" onclick="openImageModal('${comment.attachedImage}')">
+            </div>
+        `;
+    }
+    
     commentElement.innerHTML = `
         <div class="comment-header">
             <span class="comment-author">${escapeHtml(comment.author)}</span>
@@ -242,6 +248,7 @@ function displayComment(comment) {
             </div>
         </div>
         <div class="comment-text">${escapeHtml(comment.text)}</div>
+        ${attachedImageHtml}
     `;
     
     commentsList.insertBefore(commentElement, commentsList.firstChild);
@@ -730,4 +737,70 @@ function moveImageBetweenGalleries(imageId, fromGalleryId, toGalleryId) {
         
         showNotification('Image moved to other gallery!');
     }
+}
+
+// Setup comment image upload
+function setupCommentImageUpload() {
+    const commentImageInput = document.getElementById('comment-image');
+    const imageLabel = document.querySelector('.image-upload-label');
+    
+    imageLabel.addEventListener('click', function() {
+        commentImageInput.click();
+    });
+    
+    commentImageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                commentImagePreview = e.target.result;
+                showCommentImagePreview(commentImagePreview);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+// Show comment image preview
+function showCommentImagePreview(imageSrc) {
+    const previewContainer = document.getElementById('comment-image-preview');
+    previewContainer.innerHTML = `
+        <div style="position: relative; display: inline-block;">
+            <img src="${imageSrc}" alt="Preview" class="preview-image">
+            <button class="remove-preview" onclick="clearCommentImagePreview()">×</button>
+        </div>
+    `;
+}
+
+// Clear comment image preview
+function clearCommentImagePreview() {
+    const previewContainer = document.getElementById('comment-image-preview');
+    const commentImageInput = document.getElementById('comment-image');
+    
+    previewContainer.innerHTML = '';
+    commentImageInput.value = '';
+    commentImagePreview = null;
+}
+
+// Open image in modal (for comment attached images)
+function openImageModal(imageSrc) {
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const deleteBtn = document.getElementById('delete-image-btn');
+    const priorityBtn = document.getElementById('priority-toggle-btn');
+    
+    modalImage.src = imageSrc;
+    modalTitle.textContent = 'Attached Image';
+    currentImageId = null; // Not a gallery image
+    
+    // Hide controls for comment images
+    deleteBtn.style.display = 'none';
+    priorityBtn.style.display = 'none';
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Don't load comments for attached images
+    document.getElementById('comments-list').innerHTML = '';
 } 

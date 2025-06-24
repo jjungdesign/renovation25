@@ -569,4 +569,72 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #34495e;
+}
+
+/* Comment image upload styles */
+.comment-image-upload {
+    margin-bottom: 1rem;
+}
+
+.image-upload-label {
+    display: inline-block;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.image-upload-label:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+.image-preview {
+    margin-top: 10px;
+}
+
+.preview-image {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.remove-preview {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-with-image {
+    margin-top: 10px;
+}
+
+.comment-attached-image {
+    max-width: 250px;
+    max-height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.comment-attached-image:hover {
+    transform: scale(1.02);
 } 

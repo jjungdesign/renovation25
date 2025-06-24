@@ -30,20 +30,7 @@
             </div>
         </section>
 
-        <!-- Reference Images Section -->
-        <section class="gallery-section">
-            <div class="section-header">
-                <h2>Reference & Inspiration</h2>
-                <p>Design ideas and inspiration for the renovation plan</p>
-                <button class="upload-btn" onclick="triggerFileUpload('reference')">
-                    Add References
-                </button>
-                <input type="file" id="reference-upload" multiple accept="image/*" style="display: none;">
-            </div>
-            <div class="gallery" id="reference-gallery">
-                <!-- Your reference images will appear here -->
-            </div>
-        </section>
+
     </main>
 
     <!-- Modal for viewing images and comments -->
@@ -71,6 +58,13 @@
                         <div class="comment-form">
                             <input type="text" id="comment-name" placeholder="Your name">
                             <textarea id="comment-text" placeholder="Leave a comment..."></textarea>
+                            <div class="comment-image-upload">
+                                <label for="comment-image" class="image-upload-label">
+                                    📎 Attach Image (optional)
+                                </label>
+                                <input type="file" id="comment-image" accept="image/*" style="display: none;">
+                                <div id="comment-image-preview" class="image-preview"></div>
+                            </div>
                             <button onclick="addComment()" class="submit-btn">
                                 Post Comment
                             </button>
