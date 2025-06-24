@@ -7,39 +7,81 @@ let commentImagePreview = null;
 const galleryImages = [
     {
         id: 'image1',
-        src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center',
-        title: 'Living Room - Current State',
+        src: 'https://i.imgur.com/2gs3eaN.jpg',
+        title: 'Main Living Area',
         isHighPriority: true
     },
     {
         id: 'image2', 
-        src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center',
-        title: 'Kitchen Area',
-        isHighPriority: false
+        src: 'https://i.imgur.com/QZC8dBZ.jpg',
+        title: 'Kitchen Space',
+        isHighPriority: true
     },
     {
         id: 'image3',
-        src: 'https://images.unsplash.com/photo-1558618047-fd70c00c4501?w=800&h=600&fit=crop&crop=center',
+        src: 'https://i.imgur.com/XLqnbuK.jpg',
+        title: 'Dining Area',
+        isHighPriority: false
+    },
+    {
+        id: 'image4',
+        src: 'https://i.imgur.com/xS605si.jpg',
         title: 'Bedroom',
         isHighPriority: true
     },
     {
-        id: 'image4',
-        src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=600&fit=crop&crop=center',
+        id: 'image5',
+        src: 'https://i.imgur.com/rFp8q99.jpg',
         title: 'Bathroom',
         isHighPriority: false
     },
     {
-        id: 'image5',
-        src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=600&fit=crop&crop=center',
-        title: 'Dining Area',
+        id: 'image6',
+        src: 'https://i.imgur.com/kIkzSJm.jpg',
+        title: 'Hallway/Entry',
+        isHighPriority: false
+    },
+    {
+        id: 'image7',
+        src: 'https://i.imgur.com/cQOzMiK.jpg',
+        title: 'Storage/Closet Area',
+        isHighPriority: false
+    },
+    {
+        id: 'image8',
+        src: 'https://i.imgur.com/Nn1cK4j.jpg',
+        title: 'Window/Natural Light',
         isHighPriority: true
     },
     {
-        id: 'image6',
-        src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center',
-        title: 'Entryway',
+        id: 'image9',
+        src: 'https://i.imgur.com/yWSRYZD.jpg',
+        title: 'Floor Details',
         isHighPriority: false
+    },
+    {
+        id: 'image10',
+        src: 'https://i.imgur.com/iTFf1PT.jpg',
+        title: 'Wall/Paint Condition',
+        isHighPriority: false
+    },
+    {
+        id: 'image11',
+        src: 'https://i.imgur.com/5ruAZyX.jpg',
+        title: 'Ceiling Details',
+        isHighPriority: false
+    },
+    {
+        id: 'image12',
+        src: 'https://i.imgur.com/nIx0tLq.jpg',
+        title: 'Additional Space',
+        isHighPriority: false
+    },
+    {
+        id: 'image13',
+        src: 'https://i.imgur.com/P5iD5bi.jpg',
+        title: 'Overall Layout',
+        isHighPriority: true
     }
 ];
 
