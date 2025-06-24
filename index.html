@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Renovation 25</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Home Renovation 25</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Current Condo Photos Section -->
+        <section class="gallery-section">
+            <div class="section-header">
+                <h2>Current Home Photos</h2>
+                <p>Here's what we're working with - the before photos of our new space!</p>
+                <button class="upload-btn" onclick="triggerFileUpload('current')">
+                    Add Photos
+                </button>
+                <input type="file" id="current-upload" multiple accept="image/*" style="display: none;">
+            </div>
+            <div class="gallery" id="current-gallery">
+                <!-- Your uploaded photos will appear here -->
+            </div>
+        </section>
+
+        <!-- Reference Images Section -->
+        <section class="gallery-section">
+            <div class="section-header">
+                <h2>Reference & Inspiration</h2>
+                <p>Design ideas and inspiration for the renovation plan</p>
+                <button class="upload-btn" onclick="triggerFileUpload('reference')">
+                    Add References
+                </button>
+                <input type="file" id="reference-upload" multiple accept="image/*" style="display: none;">
+            </div>
+            <div class="gallery" id="reference-gallery">
+                <!-- Your reference images will appear here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for viewing images and comments -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-image" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <div class="image-controls">
+                        <button id="priority-toggle-btn" class="small-control-btn priority-btn" onclick="toggleCurrentImagePriority()" style="display: none;">
+                            Mark as High Priority
+                        </button>
+                        <button id="delete-image-btn" class="small-control-btn delete-btn" onclick="deleteCurrentImage()" style="display: none;">
+                            Delete
+                        </button>
+                    </div>
+                    <div class="modal-header">
+                        <h3 id="modal-title"></h3>
+                    </div>
+                    <div class="comments-section">
+                        <h4>Comments</h4>
+                        <div class="comment-form">
+                            <input type="text" id="comment-name" placeholder="Your name">
+                            <textarea id="comment-text" placeholder="Leave a comment..."></textarea>
+                            <button onclick="addComment()" class="submit-btn">
+                                Post Comment
+                            </button>
+                        </div>
+                        <div id="comments-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Julie Jung 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
